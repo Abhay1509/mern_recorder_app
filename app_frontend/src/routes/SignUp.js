@@ -11,8 +11,7 @@ const SignupComponent = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [cookie, setCookie] = useCookies(["token"]);
   const navigate = useNavigate();
 
@@ -21,7 +20,11 @@ const SignupComponent = () => {
       alert("Email Fields are not matching");
       return;
     }
-    const data = { email, password, username, firstName, lastName };
+    if (password !== confirmPassword) {
+      alert("Password Fields are not matching");
+      return;
+    }
+    const data = { email, password, username };
     const response = await makeUnauthenticatedPOSTRequest(
       "/auth/register",
       data
@@ -76,22 +79,12 @@ const SignupComponent = () => {
           value={password}
           setValue={setPassword}
         />
-        <div className="w-full flex justify-between items-center space-x-8">
-          <TextInput
-            label="First Name"
-            placeholder="Enter your First Name"
-            className="my-6"
-            value={firstName}
-            setValue={setFirstName}
-          />
-          <TextInput
-            label="Last Name"
-            placeholder="Enter your Last Name"
-            className="my-6"
-            value={lastName}
-            setValue={setLastName}
-          />
-        </div>
+        <PasswordInput
+          label="Confirm Password"
+          placeholder="Enter your password again"
+          value={confirmPassword}
+          setValue={setConfirmPassword}
+        />
         <div className="w-full flex items-center justify-center my-8">
           <button
             className="bg-green-400 font-semibold p-3 px-10 rounded-full"

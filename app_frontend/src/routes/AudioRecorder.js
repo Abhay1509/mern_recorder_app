@@ -67,11 +67,15 @@ const AudioRecorder = () => {
 
   return (
     <div>
-      <h2>Audio Recorder</h2>
-      <main>
+      <h2 className="flex justify-center items-center pt-5">Audio Recorder</h2>
+      <main className="flex justify-center items-center pt-5">
         <div className="audio-controls">
           {!permission ? (
-            <button onClick={getMicrophonePermission} type="button" className="btn_color">
+            <button
+              onClick={getMicrophonePermission}
+              type="button"
+              className="btn_color"
+            >
               Get Microphone
             </button>
           ) : null}

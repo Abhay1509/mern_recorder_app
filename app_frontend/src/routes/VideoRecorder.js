@@ -19,7 +19,6 @@ const VideoRecorder = () => {
 
   const getCameraPermission = async () => {
     setRecordedVideo(null);
-    //get video and audio permissions and then stream the result media stream to the videoSrc variable
     if ("MediaRecorder" in window) {
       try {
         const videoConstraints = {
@@ -27,8 +26,6 @@ const VideoRecorder = () => {
           video: true,
         };
         const audioConstraints = { audio: true };
-
-        // create audio and video streams separately
         const audioStream = await navigator.mediaDevices.getUserMedia(
           audioConstraints
         );
@@ -38,16 +35,12 @@ const VideoRecorder = () => {
 
         setPermission(true);
 
-        //combine both audio and video streams
-
         const combinedStream = new MediaStream([
           ...videoStream.getVideoTracks(),
           ...audioStream.getAudioTracks(),
         ]);
 
         setStream(combinedStream);
-
-        //set videostream to live feed player
         liveVideoFeed.current.srcObject = videoStream;
       } catch (err) {
         alert(err.message);
@@ -94,8 +87,8 @@ const VideoRecorder = () => {
 
   return (
     <div>
-      <h2>Video Recorder</h2>
-      <main>
+      <h2 className="flex justify-center items-center pt-5">Video Recorder</h2>
+      <main className="flex justify-center items-center pt-5">
         <div className="video-controls">
           {!permission ? (
             <button
