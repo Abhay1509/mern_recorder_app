@@ -100,12 +100,12 @@ const VideoRecorder = () => {
             </button>
           ) : null}
           {permission && recordingStatus === "inactive" ? (
-            <button onClick={startRecording} type="button">
+            <button onClick={startRecording} type="button" className="btn_color">
               Start Recording
             </button>
           ) : null}
           {recordingStatus === "recording" ? (
-            <button onClick={stopRecording} type="button">
+            <button onClick={stopRecording} type="button" className="btn_color">
               Stop Recording
             </button>
           ) : null}

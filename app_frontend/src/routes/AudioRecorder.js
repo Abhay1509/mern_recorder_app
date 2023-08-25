@@ -58,6 +58,7 @@ const AudioRecorder = () => {
     mediaRecorder.current.onstop = () => {
       const audioBlob = new Blob(audioChunks, { type: mimeType });
       const audioUrl = URL.createObjectURL(audioBlob);
+      localStorage.setItem("audio recording", audioUrl);
 
       setAudio(audioUrl);
 
@@ -80,12 +81,16 @@ const AudioRecorder = () => {
             </button>
           ) : null}
           {permission && recordingStatus === "inactive" ? (
-            <button onClick={startRecording} type="button">
+            <button
+              onClick={startRecording}
+              type="button"
+              className="btn_color"
+            >
               Start Recording
             </button>
           ) : null}
           {recordingStatus === "recording" ? (
-            <button onClick={stopRecording} type="button">
+            <button onClick={stopRecording} type="button" className="btn_color">
               Stop Recording
             </button>
           ) : null}
