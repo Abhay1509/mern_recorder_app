@@ -6,7 +6,7 @@ import { useCookies } from "react-cookie";
 
 const LoggedInComponent = () => {
   let [recordOption, setRecordOption] = useState("video");
-  const [cookie, , removeCookie] = useCookies(["token"]);
+  const [cookie, setCookie, removeCookie] = useCookies(["token"]);
 
   const toggleRecordOption = (type) => {
     return () => {
@@ -14,7 +14,7 @@ const LoggedInComponent = () => {
     };
   };
   const handleLogout = () => {
-    removeCookie("token");
+    removeCookie("token", { path: "/" });
     window.location.href = "/login";
   };
 
