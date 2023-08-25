@@ -8,7 +8,6 @@ import { makeUnauthenticatedPOSTRequest } from "../utils/serverHelpers";
 
 const SignupComponent = () => {
   const [email, setEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,10 +15,6 @@ const SignupComponent = () => {
   const navigate = useNavigate();
 
   const signUp = async () => {
-    if (email !== confirmEmail) {
-      alert("Email Fields are not matching");
-      return;
-    }
     if (password !== confirmPassword) {
       alert("Password Fields are not matching");
       return;
@@ -58,13 +53,6 @@ const SignupComponent = () => {
           className="my-6"
           value={email}
           setValue={setEmail}
-        />
-        <TextInput
-          label="Confirm your email"
-          placeholder="Enter your email again"
-          className="mb-6"
-          value={confirmEmail}
-          setValue={setConfirmEmail}
         />
         <TextInput
           label="Username"
